@@ -15,63 +15,59 @@ import PromiseKit
 */
 extension CLGeocoder {
     /// Submits a reverse-geocoding request for the specified location.
-    public func reverseGeocode(location: CLLocation) -> PlacemarkPromise {
-        return PlacemarkPromise.go { resolve in
-            reverseGeocodeLocation(location, completionHandler: resolve)
+    public func reverseGeocode(location: CLLocation) -> Promise<PMKPlacemark> {
+        return firstly {
+            PromiseKit.wrap{ reverseGeocodeLocation(location, completionHandler: $0) }
+        }.then(on: nil) {
+            Promise(PMKPlacemark($0))
         }
     }
 
     /// Submits a forward-geocoding request using the specified address dictionary.
-    public func geocode(_ addressDictionary: [String: String]) -> PlacemarkPromise {
-        return PlacemarkPromise.go { resolve in
-            geocodeAddressDictionary(addressDictionary, completionHandler: resolve)
+    public func geocode(_ addressDictionary: [String: String]) -> Promise<PMKPlacemark> {
+        return firstly {
+            PromiseKit.wrap{ geocodeAddressDictionary(addressDictionary, completionHandler: $0) }
+        }.then(on: nil) {
+            Promise(PMKPlacemark($0))
         }
     }
 
     /// Submits a forward-geocoding request using the specified address string.
-    public func geocode(_ addressString: String) -> PlacemarkPromise {
-        return PlacemarkPromise.go { resolve in
-            geocodeAddressString(addressString, completionHandler: resolve)
+    public func geocode(_ addressString: String) -> Promise<PMKPlacemark> {
+        return firstly {
+            PromiseKit.wrap{ geocodeAddressString(addressString, completionHandler: $0) }
+        }.then(on: nil) {
+            Promise(PMKPlacemark($0))
         }
     }
 
     /// Submits a forward-geocoding request using the specified address string within the specified region.
-    public func geocode(_ addressString: String, region: CLRegion?) -> PlacemarkPromise {
-        return PlacemarkPromise.go { resolve in
-            geocodeAddressString(addressString, in: region, completionHandler: resolve)
+    public func geocode(_ addressString: String, region: CLRegion?) -> Promise<PMKPlacemark> {
+        return firstly {
+            PromiseKit.wrap{ geocodeAddressString(addressString, in: region, completionHandler: $0) }
+        }.then(on: nil) {
+            Promise(PMKPlacemark($0))
         }
     }
 }
 
-// Xcode 8 beta 6 doesn't import CLError as Swift.Error
+// Xcode doesn't import CLError as Swift.Error (last checked Xcode 8.2)
 //extension CLError: CancellableError {
 //    public var isCancelled: Bool {
 //        return self == .geocodeCanceled
 //    }
 //}
 
-/// A promise that returns the first CLPlacemark from an array of results.
-public class PlacemarkPromise: Promise<CLPlacemark> {
+public class PMKPlacemark: CLPlacemark {
+    public var allPlacemarks: [CLPlacemark]
 
-    /// Returns all CLPlacemarks rather than just the first
-    public func asArray() -> Promise<[CLPlacemark]> {
-        return then(on: zalgo) { _ in return self.placemarks }
+    init(_ placemarks: [CLPlacemark]) {
+        allPlacemarks = placemarks
+        super.init(placemark: placemarks[0])
     }
 
-    private var placemarks: [CLPlacemark]!
-
-    fileprivate class func go(_ body: (@escaping ([CLPlacemark]?, Error?) -> Void) -> Void) -> PlacemarkPromise {
-        var promise: PlacemarkPromise!
-        promise = PlacemarkPromise { fulfill, reject in
-            body { placemarks, error in
-                if let error = error {
-                    reject(error)
-                } else {
-                    promise.placemarks = placemarks
-                    fulfill(placemarks!.first!)
-                }
-            }
-        }
-        return promise
+    public required init?(coder: NSCoder) {  //FIXME
+        allPlacemarks = []
+        super.init(coder: coder)
     }
 }

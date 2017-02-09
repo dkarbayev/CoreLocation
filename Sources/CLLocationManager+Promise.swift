@@ -40,28 +40,27 @@ extension CLLocationManager {
       want to force one or the other, change this parameter from its default
       value.
      */
-    public class func promise(_ requestAuthorizationType: RequestAuthorizationType = .automatic) -> LocationPromise {
+    public class func promise(_ requestAuthorizationType: RequestAuthorizationType = .automatic) -> Promise<PMKLocation> {
         return promise(yielding: auther(requestAuthorizationType))
     }
 
-    private class func promise(yielding yield: (CLLocationManager) -> Void = { _ in }) -> LocationPromise {
+    private class func promise(yielding yield: (CLLocationManager) -> Void = { _ in }) -> Promise<PMKLocation> {
         let manager = LocationManager()
         manager.delegate = manager
         yield(manager)
         manager.startUpdatingLocation()
-        _ = manager.promise.always {
+        return manager.promise.ensure {
             CLLocationManager.promiseDoneForLocationManager(manager)
         }
-        return manager.promise
     }
 }
 
 private class LocationManager: CLLocationManager, CLLocationManagerDelegate {
-    let (promise, fulfill, reject) = LocationPromise.foo()
+    let (promise, pipe) = Promise<PMKLocation>.pending()
 
     @objc fileprivate func locationManager(_ manager: CLLocationManager, didUpdateLocations ll: [CLLocation]) {
         let locations = ll 
-        fulfill(locations)
+        pipe.fulfill(PMKLocation(locations))
         CLLocationManager.promiseDoneForLocationManager(manager)
     }
 
@@ -70,7 +69,7 @@ private class LocationManager: CLLocationManager, CLLocationManagerDelegate {
         if error.code == CLError.locationUnknown.rawValue && error.domain == kCLErrorDomain {
             // Apple docs say you should just ignore this error
         } else {
-            reject(error)
+            pipe.reject(error)
             CLLocationManager.promiseDoneForLocationManager(manager)
         }
     }
@@ -94,7 +93,7 @@ extension CLLocationManager {
 
 @available(iOS 8, *)
 private class AuthorizationCatcher: CLLocationManager, CLLocationManagerDelegate {
-    let (promise, fulfill, _) = Promise<CLAuthorizationStatus>.pending()
+    let (promise, pipe) = Promise<CLAuthorizationStatus>.pending()
     var retainCycle: AnyObject?
 
     init(auther: (CLLocationManager)->()) {
@@ -105,13 +104,13 @@ private class AuthorizationCatcher: CLLocationManager, CLLocationManagerDelegate
             auther(self)
             retainCycle = self
         } else {
-            fulfill(status)
+            pipe.fulfill(status)
         }
     }
 
     @objc fileprivate func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status != .notDetermined {
-            fulfill(status)
+            pipe.fulfill(status)
             retainCycle = nil
         }
     }
@@ -155,26 +154,17 @@ private func auther(_ requestAuthorizationType: CLLocationManager.RequestAuthori
 
 #endif
 
+public class PMKLocation: CLLocation {
+    public var allLocations: [CLLocation]
 
-/// The promise returned by CLLocationManager.promise()
-public class LocationPromise: Promise<CLLocation> {
-    // convoluted for concurrency guarantees
-    private let (parentPromise, fulfill, reject) = Promise<[CLLocation]>.pending()
-
-    /// Convert the promise so that all Location results are returned
-    public func asArray() -> Promise<[CLLocation]> {
-        return parentPromise
+    init(_ locations: [CLLocation]) {
+        allLocations = locations
+        let l = locations[0]
+        super.init(coordinate: l.coordinate, altitude: l.altitude, horizontalAccuracy: l.horizontalAccuracy, verticalAccuracy: l.verticalAccuracy, timestamp: l.timestamp)
     }
-
-    fileprivate class func foo() -> (LocationPromise, ([CLLocation]) -> Void, (Error) -> Void) {
-        var fulfill: ((CLLocation) -> Void)!
-        var reject: ((Error) -> Void)!
-        let promise = LocationPromise { fulfill = $0; reject = $1 }
-
-        _ = promise.parentPromise.then(on: zalgo) { fulfill($0.last!) }
-        promise.parentPromise.catch(on: zalgo, execute: reject)
-
-        return (promise, promise.fulfill, promise.reject)
+    
+    public required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
