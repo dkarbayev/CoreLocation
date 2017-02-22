@@ -7,19 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		63199F0C1D5FF25C007E8A0E /* CLGeocoder+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 63199F061D5FF25C007E8A0E /* CLGeocoder+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		63199F0D1D5FF25C007E8A0E /* CLGeocoder+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 63199F071D5FF25C007E8A0E /* CLGeocoder+AnyPromise.m */; };
-		63199F0E1D5FF25C007E8A0E /* CLGeocoder+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63199F081D5FF25C007E8A0E /* CLGeocoder+Promise.swift */; };
 		63199F0F1D5FF25C007E8A0E /* CLLocationManager+AnyPromise.h in Headers */ = {isa = PBXBuildFile; fileRef = 63199F091D5FF25C007E8A0E /* CLLocationManager+AnyPromise.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63199F101D5FF25C007E8A0E /* CLLocationManager+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 63199F0A1D5FF25C007E8A0E /* CLLocationManager+AnyPromise.m */; };
 		63199F111D5FF25C007E8A0E /* CLLocationManager+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63199F0B1D5FF25C007E8A0E /* CLLocationManager+Promise.swift */; };
-		63199F161D5FF7B9007E8A0E /* CLGeocoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63199F141D5FF7B9007E8A0E /* CLGeocoderTests.swift */; };
 		63199F171D5FF7B9007E8A0E /* CLLocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63199F151D5FF7B9007E8A0E /* CLLocationManagerTests.swift */; };
 		6358AB7A1D5D4B6700B9B157 /* PMKCoreLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6358AB791D5D4B6700B9B157 /* PMKCoreLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63C7FFF71D5C020D003BAE60 /* PMKCoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C7FFA71D5BEE09003BAE60 /* PMKCoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		63291E6F1E5D17DA00C81FDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63291E691E5D17DA00C81FDD /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 63B0AC571D595E1B00FA21D9;
+			remoteInfo = PromiseKit;
+		};
+		63291E711E5D17DA00C81FDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63291E691E5D17DA00C81FDD /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 631751A81D59766500A9DDDC;
+			remoteInfo = "PMKA+Tests";
+		};
+		63291E731E5D17DA00C81FDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63291E691E5D17DA00C81FDD /* PromiseKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 630019221D596292003B4E30;
+			remoteInfo = PMKCoreTests;
+		};
+		63291E751E5D17DE00C81FDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63291E691E5D17DA00C81FDD /* PromiseKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 63B0AC561D595E1B00FA21D9;
+			remoteInfo = PromiseKit;
+		};
 		63C7FFF81D5C020D003BAE60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 63C7FF9E1D5BEE09003BAE60 /* Project object */;
@@ -30,14 +54,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		63199F061D5FF25C007E8A0E /* CLGeocoder+AnyPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLGeocoder+AnyPromise.h"; path = "Sources/CLGeocoder+AnyPromise.h"; sourceTree = SOURCE_ROOT; };
-		63199F071D5FF25C007E8A0E /* CLGeocoder+AnyPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLGeocoder+AnyPromise.m"; path = "Sources/CLGeocoder+AnyPromise.m"; sourceTree = SOURCE_ROOT; };
-		63199F081D5FF25C007E8A0E /* CLGeocoder+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLGeocoder+Promise.swift"; path = "Sources/CLGeocoder+Promise.swift"; sourceTree = SOURCE_ROOT; };
 		63199F091D5FF25C007E8A0E /* CLLocationManager+AnyPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CLLocationManager+AnyPromise.h"; path = "Sources/CLLocationManager+AnyPromise.h"; sourceTree = SOURCE_ROOT; };
 		63199F0A1D5FF25C007E8A0E /* CLLocationManager+AnyPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CLLocationManager+AnyPromise.m"; path = "Sources/CLLocationManager+AnyPromise.m"; sourceTree = SOURCE_ROOT; };
 		63199F0B1D5FF25C007E8A0E /* CLLocationManager+Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CLLocationManager+Promise.swift"; path = "Sources/CLLocationManager+Promise.swift"; sourceTree = SOURCE_ROOT; };
-		63199F141D5FF7B9007E8A0E /* CLGeocoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CLGeocoderTests.swift; path = Tests/CLGeocoderTests.swift; sourceTree = SOURCE_ROOT; };
 		63199F151D5FF7B9007E8A0E /* CLLocationManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CLLocationManagerTests.swift; path = Tests/CLLocationManagerTests.swift; sourceTree = SOURCE_ROOT; };
+		63291E101E5CED5100C81FDD /* README.markdown */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
+		63291E691E5D17DA00C81FDD /* PromiseKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PromiseKit.xcodeproj; path = ../../PromiseKit.xcodeproj; sourceTree = "<group>"; };
 		6358AB791D5D4B6700B9B157 /* PMKCoreLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PMKCoreLocation.h; path = Sources/PMKCoreLocation.h; sourceTree = SOURCE_ROOT; };
 		63C700091D5C0253003BAE60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63C7FFA71D5BEE09003BAE60 /* PMKCoreLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PMKCoreLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,15 +87,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63291E6A1E5D17DA00C81FDD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				63291E701E5D17DA00C81FDD /* PromiseKit.framework */,
+				63291E721E5D17DA00C81FDD /* PMKA+Tests.xctest */,
+				63291E741E5D17DA00C81FDD /* PMKCoreTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		63C7FF9D1D5BEE09003BAE60 = {
 			isa = PBXGroup;
 			children = (
+				63291E101E5CED5100C81FDD /* README.markdown */,
 				63C700091D5C0253003BAE60 /* Info.plist */,
 				63CCF8121D5C0C4E00503216 /* Cartfile */,
 				63CCF8171D5C11B500503216 /* Carthage.xcconfig */,
 				63C7FFA91D5BEE09003BAE60 /* Sources */,
 				63C7FFF31D5C020D003BAE60 /* Tests */,
 				63C7FFA81D5BEE09003BAE60 /* Products */,
+				63291E691E5D17DA00C81FDD /* PromiseKit.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,9 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				6358AB791D5D4B6700B9B157 /* PMKCoreLocation.h */,
-				63199F061D5FF25C007E8A0E /* CLGeocoder+AnyPromise.h */,
-				63199F071D5FF25C007E8A0E /* CLGeocoder+AnyPromise.m */,
-				63199F081D5FF25C007E8A0E /* CLGeocoder+Promise.swift */,
 				63199F091D5FF25C007E8A0E /* CLLocationManager+AnyPromise.h */,
 				63199F0A1D5FF25C007E8A0E /* CLLocationManager+AnyPromise.m */,
 				63199F0B1D5FF25C007E8A0E /* CLLocationManager+Promise.swift */,
@@ -104,7 +135,6 @@
 		63C7FFF31D5C020D003BAE60 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				63199F141D5FF7B9007E8A0E /* CLGeocoderTests.swift */,
 				63199F151D5FF7B9007E8A0E /* CLLocationManagerTests.swift */,
 			);
 			name = Tests;
@@ -119,7 +149,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				63199F0F1D5FF25C007E8A0E /* CLLocationManager+AnyPromise.h in Headers */,
-				63199F0C1D5FF25C007E8A0E /* CLGeocoder+AnyPromise.h in Headers */,
 				6358AB7A1D5D4B6700B9B157 /* PMKCoreLocation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,6 +167,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				63291E761E5D17DE00C81FDD /* PBXTargetDependency */,
 			);
 			name = PMKCoreLocation;
 			productName = "PMK+UIKit";
@@ -150,7 +180,6 @@
 			buildPhases = (
 				63C7FFEE1D5C020D003BAE60 /* Sources */,
 				63C7FFEF1D5C020D003BAE60 /* Frameworks */,
-				639447051D5D011300DDAE3C /* Embed Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,7 +198,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Max Howell";
 				TargetAttributes = {
 					63C7FFA61D5BEE09003BAE60 = {
@@ -194,6 +223,12 @@
 			mainGroup = 63C7FF9D1D5BEE09003BAE60;
 			productRefGroup = 63C7FFA81D5BEE09003BAE60 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 63291E6A1E5D17DA00C81FDD /* Products */;
+					ProjectRef = 63291E691E5D17DA00C81FDD /* PromiseKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				63C7FFA61D5BEE09003BAE60 /* PMKCoreLocation */,
@@ -202,32 +237,36 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		639447051D5D011300DDAE3C /* Embed Carthage Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				PromiseKit,
-			);
-			name = "Embed Carthage Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "case \"$PLATFORM_NAME\" in\nmacosx) plat=Mac;;\niphone*) plat=iOS;;\nwatch*) plat=watchOS;;\nappletv*) plat=tvOS;;\n*) echo \"error: Unknown PLATFORM_NAME: $PLATFORM_NAME\"; exit 1;;\nesac\nfor (( n = 0; n < SCRIPT_INPUT_FILE_COUNT; n++ )); do\nVAR=SCRIPT_INPUT_FILE_$n\nframework=$(basename \"${!VAR}\")\nexport SCRIPT_INPUT_FILE_$n=\"$SRCROOT\"/Carthage/Build/$plat/\"$framework\".framework\ndone\n\n/usr/local/bin/carthage copy-frameworks || exit\n\nfor (( n = 0; n < SCRIPT_INPUT_FILE_COUNT; n++ )); do\nVAR=SCRIPT_INPUT_FILE_$n\nsource=${!VAR}.dSYM\ndest=${BUILT_PRODUCTS_DIR}/$(basename \"$source\")\nditto \"$source\" \"$dest\" || exit\ndone";
+/* Begin PBXReferenceProxy section */
+		63291E701E5D17DA00C81FDD /* PromiseKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = PromiseKit.framework;
+			remoteRef = 63291E6F1E5D17DA00C81FDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-/* End PBXShellScriptBuildPhase section */
+		63291E721E5D17DA00C81FDD /* PMKA+Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "PMKA+Tests.xctest";
+			remoteRef = 63291E711E5D17DA00C81FDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		63291E741E5D17DA00C81FDD /* PMKCoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = PMKCoreTests.xctest;
+			remoteRef = 63291E731E5D17DA00C81FDD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
 		63C7FFA21D5BEE09003BAE60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63199F0E1D5FF25C007E8A0E /* CLGeocoder+Promise.swift in Sources */,
 				63199F101D5FF25C007E8A0E /* CLLocationManager+AnyPromise.m in Sources */,
-				63199F0D1D5FF25C007E8A0E /* CLGeocoder+AnyPromise.m in Sources */,
 				63199F111D5FF25C007E8A0E /* CLLocationManager+Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,7 +275,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63199F161D5FF7B9007E8A0E /* CLGeocoderTests.swift in Sources */,
 				63199F171D5FF7B9007E8A0E /* CLLocationManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +282,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		63291E761E5D17DE00C81FDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PromiseKit;
+			targetProxy = 63291E751E5D17DE00C81FDD /* PBXContainerItemProxy */;
+		};
 		63C7FFF91D5C020D003BAE60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 63C7FFA61D5BEE09003BAE60 /* PMKCoreLocation */;
@@ -271,6 +314,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -328,6 +372,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

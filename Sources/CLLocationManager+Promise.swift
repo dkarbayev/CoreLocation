@@ -1,7 +1,5 @@
 import CoreLocation.CLLocationManager
-#if !COCOAPODS
 import PromiseKit
-#endif
 
 #if !os(tvOS)
 
@@ -40,11 +38,11 @@ extension CLLocationManager {
       want to force one or the other, change this parameter from its default
       value.
      */
-    public class func promise(_ requestAuthorizationType: RequestAuthorizationType = .automatic) -> Promise<PMKLocation> {
+    public class func promise(_ requestAuthorizationType: RequestAuthorizationType = .automatic) -> Promise<[CLLocation]> {
         return promise(yielding: auther(requestAuthorizationType))
     }
 
-    private class func promise(yielding yield: (CLLocationManager) -> Void = { _ in }) -> Promise<PMKLocation> {
+    private class func promise(yielding yield: (CLLocationManager) -> Void = { _ in }) -> Promise<[CLLocation]> {
         let manager = LocationManager()
         manager.delegate = manager
         yield(manager)
@@ -56,20 +54,19 @@ extension CLLocationManager {
 }
 
 private class LocationManager: CLLocationManager, CLLocationManagerDelegate {
-    let (promise, pipe) = Promise<PMKLocation>.pending()
+    let (promise, seal) = Promise<[CLLocation]>.pending()
 
-    @objc fileprivate func locationManager(_ manager: CLLocationManager, didUpdateLocations ll: [CLLocation]) {
-        let locations = ll 
-        pipe.fulfill(PMKLocation(locations))
+    @objc fileprivate func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        seal.fulfill(locations)
         CLLocationManager.promiseDoneForLocationManager(manager)
     }
 
     @objc func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        let error = error as NSError
-        if error.code == CLError.locationUnknown.rawValue && error.domain == kCLErrorDomain {
-            // Apple docs say you should just ignore this error
+        let nsError = error as NSError
+        if nsError.code == CLError.locationUnknown.rawValue && nsError.domain == kCLErrorDomain {
+            // INDEED! Apple docs say you should just ignore this error
         } else {
-            pipe.reject(error)
+            seal.reject(error)
             CLLocationManager.promiseDoneForLocationManager(manager)
         }
     }
@@ -153,19 +150,5 @@ private func auther(_ requestAuthorizationType: CLLocationManager.RequestAuthori
 }
 
 #endif
-
-public class PMKLocation: CLLocation {
-    public var allLocations: [CLLocation]
-
-    init(_ locations: [CLLocation]) {
-        allLocations = locations
-        let l = locations[0]
-        super.init(coordinate: l.coordinate, altitude: l.altitude, horizontalAccuracy: l.horizontalAccuracy, verticalAccuracy: l.verticalAccuracy, timestamp: l.timestamp)
-    }
-    
-    public required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
 
 #endif

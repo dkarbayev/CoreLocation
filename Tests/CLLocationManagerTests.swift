@@ -6,24 +6,11 @@ import XCTest
 #if !os(tvOS)
 
 class Test_CLLocationManager_Swift: XCTestCase {
-    func test_fulfills_with_one_location() {
+    func test_fulfills() {
         swizzle(CLLocationManager.self, #selector(CLLocationManager.startUpdatingLocation)) {
             let ex = expectation(description: "")
 
             CLLocationManager.promise().then { x -> Void in
-                XCTAssertEqual(x, dummy.last!)
-                ex.fulfill()
-            }
-
-            waitForExpectations(timeout: 1, handler: nil)
-        }
-    }
-
-    func test_fulfills_with_multiple_locations() {
-        swizzle(CLLocationManager.self, #selector(CLLocationManager.startUpdatingLocation)) {
-            let ex = expectation(description: "")
-
-            CLLocationManager.promise().asArray().then { x -> Void in
                 XCTAssertEqual(x, dummy)
                 ex.fulfill()
             }
