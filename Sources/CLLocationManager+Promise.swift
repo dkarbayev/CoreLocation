@@ -83,14 +83,14 @@ extension CLLocationManager {
      and not being abused for logic.
     */
     @available(iOS 8, *)
-    public class func requestAuthorization(type: RequestAuthorizationType = .automatic) -> Promise<CLAuthorizationStatus> {
+    public class func requestAuthorization(type: RequestAuthorizationType = .automatic) -> Guarantee<CLAuthorizationStatus> {
         return AuthorizationCatcher(auther: auther(type)).promise
     }
 }
 
 @available(iOS 8, *)
 private class AuthorizationCatcher: CLLocationManager, CLLocationManagerDelegate {
-    let (promise, pipe) = Promise<CLAuthorizationStatus>.pending()
+    let (promise, seal) = Guarantee<CLAuthorizationStatus>.pending()
     var retainCycle: AnyObject?
 
     init(auther: (CLLocationManager)->()) {
@@ -101,13 +101,13 @@ private class AuthorizationCatcher: CLLocationManager, CLLocationManagerDelegate
             auther(self)
             retainCycle = self
         } else {
-            pipe.fulfill(status)
+            seal(status)
         }
     }
 
     @objc fileprivate func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status != .notDetermined {
-            pipe.fulfill(status)
+            seal(status)
             retainCycle = nil
         }
     }
