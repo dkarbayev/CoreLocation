@@ -47,6 +47,7 @@ extension CLLocationManager {
     private class func promise(yielding yield: (CLLocationManager) -> Void = { _ in }) -> LocationPromise {
         let manager = LocationManager()
         manager.delegate = manager
+        manager.desiredAccuracy = kCLLocationAccuracyBest
         yield(manager)
         manager.startUpdatingLocation()
         _ = manager.promise.always {
